@@ -1,0 +1,92 @@
+﻿@model IEnumerable<PassBook.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "";
+}
+@*<div class="row">
+    <div class="col-md-8 offset-md-2">*@
+   
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Transactions available</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AccountNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BenificiaryName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Amount)
+                        </th>
+                        <th>
+                            <a asp-action="Create" class="d-flex justify-content-center align-items-center btn btn-sm btn-success">
+                                <i class="fa fa-plus " aria-hidden="true"></i>
+                                Add Transaction
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccountNumber)
+                            </td>
+                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BenificiaryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                            <td class="d-flex justify-content-center align-items-center">
+                                @*<a asp-action="Details" asp-route-id="@item.TransactionId">Details</a> |*@
+                                <form asp-action="Delete" asp-route-id="@item.TransactionId">
+                                    <div btn-group btn-group-sm>
+                                        <a asp-action="Details" asp-route-id="@item.TransactionId" class="btn btn-primary">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.TransactionId">
+                                            <i class="fa fa-wrench" aria-hidden="true"></i>
+                                        </a>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you Sure to delete this record?)">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+
+                                </form>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+                </div>
+
+<!-- Page level plugins -->
+<script src="../../dist3/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="../../dist3/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="../../dist3/js/demo/datatables-demo.js"></script>
+
+
